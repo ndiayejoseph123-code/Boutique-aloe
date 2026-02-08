@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produits Aloe - Boutique</title>
+    <style>
+        * { box-sizing: border-box; margin:0; padding:0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color:#f5f5f5; color:#333; }
+        header { background-color:#4CAF50; color:white; text-align:center; padding:2rem 1rem; }
+        header h1 { font-size:2.5rem; margin-bottom:0.5rem; }
+        header p { font-size:1.2rem; }
+        .form-container { max-width:600px; margin:2rem auto; background:white; padding:1.5rem; border-radius:12px; box-shadow:0 5px 15px rgba(0,0,0,0.1); }
+        .form-container input { width:100%; padding:0.8rem 1rem; margin-bottom:1rem; border-radius:6px; border:1px solid #ccc; font-size:1rem; }
+        .container { max-width:1200px; margin:2rem auto; padding:0 1rem; display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:2rem; }
+        .product-card { background:white; border-radius:12px; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; }
+        .product-card:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.15); }
+        .product-card img { width:100%; display:block; }
+        .product-card .info { padding:1rem; text-align:center; }
+        .product-card .info h2 { font-size:1.5rem; margin-bottom:0.5rem; color:#4CAF50; }
+        .product-card .info p { margin-bottom:1rem; color:#555; }
+        .product-card .info a { display:inline-block; text-decoration:none; background-color:#25D366; color:white; padding:0.5rem 1.2rem; border-radius:50px; font-weight:bold; transition:background-color 0.3s; }
+        .product-card .info a:hover { background-color:#1ebe57; }
+        footer { text-align:center; padding:2rem 1rem; background-color:#4CAF50; color:white; margin-top:2rem; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Produits Aloe chez béatrice</h1>
+    <p>Commandez facilement via WhatsApp</p>
+</header>
+
+<!-- Formulaire pour prénom et nom -->
+<div class="form-container">
+    <input type="text" id="prenom" placeholder="Votre prénom">
+    <input type="text" id="nom" placeholder="Votre nom">
+</div>
+
+<div class="container" id="products-container">
+    <!-- Exemple de produit : dupliquez ce bloc pour ajouter un nouveau produit -->
+    <div class="product-card">
+        <img src="https://raw.githubusercontent.com/ndiayejoseph123-code/Prod-aloe/main/image1.jpg" alt="Produit 1">
+        <div class="info">
+            <h2>Produit 1</h2>
+            <p>Découvrez notre produit naturel et de qualité.</p>
+            <a href="#" class="whatsapp-btn" data-produit="Produit 1" target="_blank">Commander via WhatsApp</a>
+        </div>
+    </div>
+
+    <div class="product-card">
+        <img src="https://raw.githubusercontent.com/ndiayejoseph123-code/Prod-aloe/main/image2.jpg" alt="Produit 2">
+        <div class="info">
+            <h2>Produit 2</h2>
+            <p>Un soin parfait pour votre bien-être quotidien.</p>
+            <a href="#" class="whatsapp-btn" data-produit="Produit 2" target="_blank">Commander via WhatsApp</a>
+        </div>
+    </div>
+
+    <div class="product-card">
+        <img src="https://raw.githubusercontent.com/ndiayejoseph123-code/Prod-aloe/main/image3.jpg" alt="Produit 3">
+        <div class="info">
+            <h2>Produit 3</h2>
+            <p>Naturel, efficace et fait pour vous.</p>
+            <a href="#" class="whatsapp-btn" data-produit="Produit 3" target="_blank">Commander via WhatsApp</a>
+        </div>
+    </div>
+
+    <!-- Pour ajouter un nouveau produit, copiez-collez ce bloc et changez image/nom/description/data-produit -->
+    <!--
+    <div class="product-card">
+        <img src="URL_DE_L_IMAGE" alt="Nom du produit">
+        <div class="info">
+            <h2>Nom du produit</h2>
+            <p>Description du produit</p>
+            <a href="#" class="whatsapp-btn" data-produit="Nom du produit" target="_blank">Commander via WhatsApp</a>
+        </div>
+    </div>
+    -->
+</div>
+
+<footer>
+    &copy; 2026 Produits Aloe. Contactez-nous sur WhatsApp: 777195288
+</footer>
+
+<script>
+    // Fonction pour gérer les boutons WhatsApp
+    const buttons = document.querySelectorAll('.whatsapp-btn');
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const prenom = document.getElementById('prenom').value.trim();
+            const nom = document.getElementById('nom').value.trim();
+            const produit = btn.getAttribute('data-produit');
+
+            if(!prenom || !nom){
+                alert("Veuillez saisir votre prénom et nom avant de commander.");
+                return;
+            }
+
+            const message = encodeURIComponent(`${prenom} ${nom}, Bonjour ! J'aimerais obtenir ${produit}`);
+            const url = `https://wa.me/221777195288?text=${message}`;
+            window.open(url, "_blank");
+        });
+    });
+</script>
+
+</body>
+</html>
